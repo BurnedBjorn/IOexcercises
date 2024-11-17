@@ -30,7 +30,7 @@ int main()
             
             ost << ch;
         }
-        
+        cout << "done";
 
     }
     catch (...) {
