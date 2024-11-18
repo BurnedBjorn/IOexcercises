@@ -3,34 +3,68 @@
 
 #include "std_lib_facilities.h"
 using namespace std;
+void FToLower(string, string);
 
+void FindWord(string filename, string word) {
+    for (int i = 0; i < word.size(); i++)
+    {
+        word[i] = tolower(word[i]); //bring all letters to lowercase
+    }
+    ifstream win{ filename };
+    if (!win)
+    {
+        error("couldn't open file " + filename);
+    }
+    ofstream wout{ "WordFound.txt"};
+    if (!wout)
+    {
+        error("couldn't open the output file");
+    }
+    //FToLower(filename, filename);
+    for (int i = 0; win; i++) //do as long as lines are reading
+    {
+        string input;
+        getline(win, input);
+        string output = input; //save the input with cases
+        for (int i = 0; i < input.size(); i++) //bring all input to lowercase
+        {
+            input[i] = tolower(input[i]);
+        }
+        if (input.find(word)!=input.npos) //find all lines in input, then output the lines with original case
+        {
+            wout <<i<<", " << output<<'\n';
+            cout << i << " " << output << " " << word << '\n';
+        }
+    }
+}
+void FToLower(string finput, string foutput) {
+    ifstream ist{ finput };
+    if (!ist)
+    {
+        error("can't open file");
+    }
+    ofstream ost(foutput);
+    if (!ost)
+    {
+        error("can't get output file");
+    }
+    char ch;
+    while (ist.get(ch))
+    {
+        if (isalpha(ch))
+        {
+            ch = tolower(ch);
+        }
 
-
+        ost << ch;
+    }
+    cout << "done";
+}
 
 int main()
 {
     try {
-        ifstream ist{ "Text_file.txt" };
-        if (!ist)
-        {
-            error("can't open file");
-        }
-        ofstream ost("Output.txt");
-        if (!ost)
-        {
-            error("can't get output file");
-        }
-        char ch;
-        while (ist.get(ch))
-        {
-            if (isalpha(ch))
-            {
-                ch = tolower(ch);
-            }
-            
-            ost << ch;
-        }
-        cout << "done";
+        FindWord("Text_file.txt", "test");
 
     }
     catch (...) {
