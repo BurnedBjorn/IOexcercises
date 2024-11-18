@@ -61,10 +61,35 @@ void FToLower(string finput, string foutput) {
     cout << "done";
 }
 
+
+
+void disemvowel(string filename) {
+    ifstream fin{ filename };
+    
+    if (!fin)
+    {
+        error("can't open file");
+    }
+    ofstream fout{ "output.txt" };
+    vector<char> vowels{ 'a','e','i','o','u','y' };
+    char input;
+    
+    while (fin.get(input))
+    {
+        char savedcase = input;
+        input = tolower(input);
+        if (find(vowels.begin(), vowels.end(), input)== vowels.end())
+        {
+            fout << savedcase;
+            //cout << input;
+        }
+    }
+}
+
 int main()
 {
     try {
-        FindWord("Text_file.txt", "test");
+        disemvowel("words.txt");
 
     }
     catch (...) {
