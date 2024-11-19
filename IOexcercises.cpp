@@ -87,21 +87,22 @@ void disemvowel(string filename) {
 }
 
 void form_out(int number, int base) {
-    vector<string> base_name;
-    base_name[1] = "converts to";
-    base_name[8] = "octal";
-    base_name[10] = "decimal";
-    base_name[16] = "hexadecimal";
+    
+    const string conv = "converts to\t";
+    const string d = "\tdecimal\t";
+    const string o = "\toctal\t";
+    const string h = "\thexadecimal\t";
+      
     switch (base)
     {
     case 8:
-        cout << oct << number << '\t' << base_name[base] << '\t' << base_name[1] << dec << '\t' << number << endl;
+        cout << oct << number <<  o  << conv << dec  << number <<d<< endl;
         break;
     case 10:
-        cout << dec << number << '\t' << base_name[base] << '\t' << base_name[1] << dec << '\t' << number << endl;
+        cout << dec << number << d << conv << dec << number <<d<< endl;
         break;
     case 16:
-        cout << hex << number << '\t' << base_name[base] << '\t' << base_name[1] << dec << '\t' << number << endl;
+        cout << hex << number << h << conv << dec <<  number << d<<endl;
         break;
     default:
         break;
@@ -136,7 +137,7 @@ void multi_input() {
     }
     for (int i = 0; i < numbers.size(); i++)
     {
-        
+        form_out(numbers[i], bases[i]);
     }
 }
 
