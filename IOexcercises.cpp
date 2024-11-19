@@ -86,16 +86,77 @@ void disemvowel(string filename) {
     }
 }
 
+void form_out(int number, int base) {
+    vector<string> base_name;
+    base_name[1] = "converts to";
+    base_name[8] = "octal";
+    base_name[10] = "decimal";
+    base_name[16] = "hexadecimal";
+    switch (base)
+    {
+    case 8:
+        cout << oct << number << '\t' << base_name[base] << '\t' << base_name[1] << dec << '\t' << number << endl;
+    case 10:
+        cout << dec << number << '\t' << base_name[base] << '\t' << base_name[1] << dec << '\t' << number << endl;
+    case 16:
+        cout << hex << number << '\t' << base_name[base] << '\t' << base_name[1] << dec << '\t' << number << endl;
+    default:
+        break;
+    }
+
+}
+
+void multi_input() {
+    cout << "Enter integers in octal, decimal or hexadecimal system\ntype ';' or 'quit' when done inputting\n>";
+    string input;
+    vector<int> numbers;
+    vector<int> bases;
+    while (cin>>input&&(input!=";"||input=="quit"))
+    {
+        int base = 10;
+        if (input[0] == '0')
+        {
+            if (input[1]=='x')
+            {
+                base = 16;
+            }
+            else
+            {
+                base = 8;
+            }
+        }
+        int num = -999;
+        num = stoi(input, nullptr, base);
+        numbers.push_back(num);
+        bases.push_back(base);
+        cout << '>';
+    }
+    for (int i = 0; i < numbers.size(); i++)
+    {
+        
+    }
+}
+
+
+
+
+
+
 int main()
 {
     try {
-        disemvowel("words.txt");
+        multi_input();
+        
 
+    }
+    catch (exception& e) {
+        cerr << "exception: " << e.what() << endl;
+        
+        return 1;
     }
     catch (...) {
         cerr << "exception\n";
-        //char c;
-        //while (cin >> c && c != ';');
+        
         return 2;
     }
 }
