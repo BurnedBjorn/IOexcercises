@@ -96,14 +96,17 @@ void form_out(int number, int base) {
     {
     case 8:
         cout << oct << number << '\t' << base_name[base] << '\t' << base_name[1] << dec << '\t' << number << endl;
+        break;
     case 10:
         cout << dec << number << '\t' << base_name[base] << '\t' << base_name[1] << dec << '\t' << number << endl;
+        break;
     case 16:
         cout << hex << number << '\t' << base_name[base] << '\t' << base_name[1] << dec << '\t' << number << endl;
+        break;
     default:
         break;
     }
-
+     
 }
 
 void multi_input() {
